@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Perdóname, Michelle 🌸</title>
+  <style>
+    :root {
+      --bg1: #f8e8f1;
+      --bg2: #fff0f6;
+      --accent: #6b2d5b;
+      --petal1: #ffd7f0;
+      --petal2: #ffb3d6;
+      --petal3: #ffeef6;
+      --text: #5b2d5b;
+      --lily1: #fff0f6;
+      --lily2: #ffd7f0;
+      --lily3: #ffe4f2;
+      --center: #fff7d1;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial; }
+    body {
+      background: radial-gradient(circle at 10% 20%, rgba(255,240,255,0.9), transparent 22%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 24px;
+    }
+    .card {
+      width: min(980px, 96vw); max-width: 980px; height: min(620px, 86vh); border-radius: 24px; padding: 36px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.72));
+      box-shadow: 0 18px 40px rgba(87,34,87,0.09), inset 0 1px 0 rgba(255,255,255,0.6);
+      position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    }
+    h1 {
+      font-size: clamp(32px, 6.2vw, 70px); margin: 0; letter-spacing: 4px; color: var(--text); font-weight: 700;
+      text-shadow: 0 6px 18px rgba(107,45,107,0.06); position: relative; z-index: 10;
+    }
+    .subtitle { margin-top: 10px; color: #8b587f; opacity: 0.9; font-weight: 600; position: relative; z-index: 10; }
+    /* Letter animation */
+    .letter { display: inline-block; opacity: 0; transform: translateY(42px) rotate(-6deg); }
+    .letter.animate { animation: pop 0.74s cubic-bezier(.2,.9,.3,1) forwards; }
+    @keyframes pop {
+      0% { opacity: 0; transform: translateY(42px) scale(.6) rotate(-8deg); }
+      60% { opacity: 1; transform: translateY(-8px) scale(1.06) rotate(4deg); }
+      100% { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+    }
+    /* Floating lilies */
+    .lily {
+      position: absolute; opacity: 0; transform-origin: center center; z-index: 5;
+      animation: float 12s ease-in-out infinite, fadeIn 1s ease-in forwards;
+    }
+    .l1 { left: -5%; top: 10%; width: 100px; height: 100px; animation-name: floatA, fadeIn; }
+    .l2 { right: -5%; bottom: 10%; width: 120px; height: 120px; animation-name: floatB, fadeIn; animation-delay: 0.2s; }
+    .l3 { left: 10%; bottom: -5%; width: 80px; height: 80px; animation-name: floatC, fadeIn; animation-delay: 0.4s; }
+    .l4 { right: 15%; top: -5%; width: 90px; height: 90px; animation-name: floatD, fadeIn; animation-delay: 0.6s; }
+    .l5 { left: 35%; top: 5%; width: 70px; height: 70px; animation-name: floatE, fadeIn; animation-delay: 0.8s; }
+    @keyframes floatA {
+      0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      25% { transform: translate(-20px, -30px) rotate(10deg) scale(1.05); }
+      50% { transform: translate(10px, -10px) rotate(-10deg) scale(1); }
+      75% { transform: translate(-10px, 20px) rotate(5deg) scale(0.95); }
+      100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    }
+    @keyframes floatB {
+      0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      25% { transform: translate(25px, -35px) rotate(-8deg) scale(1.1); }
+      50% { transform: translate(-15px, -5px) rotate(8deg) scale(1); }
+      75% { transform: translate(10px, 15px) rotate(-5deg) scale(0.95); }
+      100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    }
+    @keyframes floatC {
+      0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      50% { transform: translate(0, -25px) rotate(12deg) scale(1.05); }
+      100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    }
+    @keyframes floatD {
+      0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      40% { transform: translate(-15px, -30px) rotate(15deg) scale(1.1); }
+      100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    }
+    @keyframes floatE {
+      0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      35% { transform: translate(10px, -20px) rotate(-10deg) scale(1.05); }
+      100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.5); }
+      100% { opacity: 0.95; transform: scale(1); }
+    }
+    /* Petal generation effect */
+    .petal {
+      position: absolute; border-radius: 50% 50% 0 0; opacity: 0; pointer-events: none; z-index: 3;
+      background: var(--petal1); transform-origin: bottom center;
+      animation: petalFall 5s ease-out forwards;
+    }
+    @keyframes petalFall {
+      0% { opacity: 0.8; transform: translateY(0) rotate(0deg) scale(0.5); }
+      20% { opacity: 0.9; transform: translateY(-20px) rotate(30deg) scale(1); }
+      100% { opacity: 0; transform: translateY(-150px) rotate(180deg) scale(0.8); }
+    }
+    /* Controls */
+    .actions { position: absolute; left: 0; right: 0; bottom: 18px; display: flex; justify-content: center; gap: 12px; z-index: 10; }
+    .btn {
+      background: transparent; border: 2px solid rgba(91,45,91,0.08); padding: 8px 14px; border-radius: 999px;
+      font-weight: 700; cursor: pointer; color: var(--text); transition: background 0.3s;
+    }
+    .btn:hover { background: rgba(91,45,91,0.1); }
+    @media (max-width: 560px) {
+      .card { padding: 18px; border-radius: 14px; }
+      h1 { font-size: 36px; }
+      .lily { transform: scale(0.8); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <!-- Lirios SVG - Detailed lily shapes -->
+    <div class="lily l1" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="var(--lily1)" />
+            <stop offset="100%" stop-color="var(--lily2)" />
+          </linearGradient>
+        </defs>
+        <g transform="translate(100,100)">
+          <!-- Outer petals -->
+          <path d="M0 -80 C30 -60 50 -20 50 0 C50 30 20 60 0 80 C-20 60 -50 30 -50 0 C-50 -20 -30 -60 0 -80 Z" fill="url(#g1)" opacity="0.98"/>
+          <path d="M30 -70 C50 -50 60 -15 60 0 C60 15 50 50 30 70 C10 50 0 15 0 0 C0 -15 10 -50 30 -70 Z" fill="var(--lily3)" opacity="0.9" transform="rotate(60)"/>
+          <path d="M-30 -70 C-50 -50 -60 -15 -60 0 C-60 15 -50 50 -30 70 C-10 50 0 15 0 0 C0 -15 -10 -50 -30 -70 Z" fill="var(--lily3)" opacity="0.9" transform="rotate(-60)"/>
+          <!-- Inner petals -->
+          <path d="M0 -50 C20 -40 30 -10 30 0 C30 10 20 40 0 50 C-20 40 -30 10 -30 0 C-30 -10 -20 -40 0 -50 Z" fill="var(--lily2)" opacity="0.95"/>
+          <path d="M20 -45 C30 -35 35 -10 35 0 C35 10 30 35 20 45 C10 35 0 10 0 0 C0 -10 10 -35 20 -45 Z" fill="var(--lily1)" opacity="0.9" transform="rotate(60)"/>
+          <path d="M-20 -45 C-30 -35 -35 -10 -35 0 C-35 10 -30 35 -20 45 C-10 35 0 10 0 0 C0 -10 -10 -35 -20 -45 Z" fill="var(--lily1)" opacity="0.9" transform="rotate(-60)"/>
+          <!-- Center -->
+          <ellipse cx="0" cy="0" rx="8" ry="12" fill="var(--center)" opacity="0.95"/>
+        </g>
+      </svg>
+    </div>
+    <div class="lily l2" aria-hidden="true">
+      <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="var(--lily1)" />
+            <stop offset="100%" stop-color="var(--lily2)" />
+          </linearGradient>
+        </defs>
+        <g transform="translate(110,110)">
+          <path d="M0 -90 C35 -70 55 -25 55 0 C55 25 35 70 0 90 C-35 70 -55 25 -55 0 C-55 -25 -35 -70 0 -90 Z" fill="url(#g2)" opacity="0.98"/>
+          <path d="M35 -80 C55 -60 65 -20 65 0 C65 20 55 60 35 80 C15 60 0 20 0 0 C0 -20 15 -60 35 -80 Z" fill="var(--lily3)" opacity="0.9" transform="rotate(60)"/>
+          <path d="M-35 -80 C-55 -60 -65 -20 -65 0 C-65 20 -55 60 -35 80 C-15 60 0 20 0 0 C0 -20 -15 -60 -35 -80 Z" fill="var(--lily3)" opacity="0.9" transform="rotate(-60)"/>
+          <path d="M0 -60 C25 -50 35 -15 35 0 C35 15 25 50 0 60 C-25 50 -35 15 -35 0 C-35 -15 -25 -50 0 -60 Z" fill="var(--lily2)" opacity="0.95"/>
+          <path d="M25 -50 C35 -40 40 -10 40 0 C40 10 35 40 25 50 C10 40 0 10 0 0 C0 -10 10 -40 25 -50 Z" fill="var(--lily1)" opacity="0.9" transform="rotate(60)"/>
+          <path d="M-25 -50 C-35 -40 -40 -10 -40 0 C-40 10 -35 40 -25 50 C-10 40 0 10 0 0 C0 -10 -10 -40 -25 -50 Z" fill="var(--lily1)" opacity="0.9" transform="rotate(-60)"/>
+          <circle cx="0" cy="0" r="10" fill="var(--center)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="lily l3" aria-hidden="true">
+      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="var(--lily1)" />
+            <stop offset="100%" stop-color="var(--lily2)" />
+          </linearGradient>
+        </defs>
+        <g transform="translate(70,70)">
+          <path d="M0 -50 C25 -40 35 -15 35 0 C35 15 25 40 0 50 C-25 40 -35 15 -35 0 C-35 -15 -25 -40 0 -50 Z" fill="url(#g3)" opacity="0.98"/>
+          <path d="M25 -45 C35 -35 40 -10 40 0 C40 10 35 35 25 45 C10 35 0 10 0 0 C0 -10 10 -35 25 -45 Z" fill="var(--lily3)" opacity="0.9" transform="rotate(60)"/>
+          <path d="M-25 -45 C-35 -35 -40 -10 -40 0 C-40 10 -35 35 -25 45 C-10 35 0 10 0 0 C0 -10 -10 -35 -25 -45 Z" fill="var(--lily3)" opacity="0.9" transform="rotate(-60)"/>
+          <path d="M0 -35 C15 -25 25 -5 25 0 C25 5 15 25 0 35 C-15 25 -25 5 -25 0 C-25 -5 -15 -25 0 -35 Z" fill="var(--lily2)" opacity="0.95"/>
+          <circle cx="0" cy="0" r="6" fill="var(--center)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="lily l4" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="var(--lily1)" />
+            <stop offset="100%" stop-color="var(--lily2)" />
+          </linearGradient>
+        </defs>
+        <g transform="translate(100,100)">
+          <path d="M0 -80 C30 -60 50 -20 50 0 C50 20 30 60 0 80 C-30 60 -50 20 -50 0 C-50 -20 -30 -60 0 -80 Z" fill="url(#g4)" opacity="0.98"/>
+          <path d="M30 -70 C50 -50 60 -15 60 0 C60 15 50 50 30 70 C10 50 0 15 0 0 C0 -15 10 -50 30 -70 Z" fill="var(--lily3)" opacity="0.9" transform="rotate(60)"/>
+          <path d="M-30 -70 C-50 -50 -60 -15 -60 0 C-60 15 -50 50 -30 70 C-10 50 0 15 0 0 C0 -15 -10 -50 -30 -70 Z" fill="var(--lily3)" opacity="0.9" transform="rotate(-60)"/>
+          <path d="M0 -50 C20 -40 30 -10 30 0 C30 10 20 40 0 50 C-20 40 -30 10 -30 0 C-30 -10 -20 -40 0 -50 Z" fill="var(--lily2)" opacity="0.95"/>
+          <circle cx="0" cy="0" r="8" fill="var(--center)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="lily l5" aria-hidden="true">
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="var(--lily1)" />
+            <stop offset="100%" stop-color="var(--lily2)" />
+          </linearGradient>
+        </defs>
+        <g transform="translate(80,80)">
+          <path d="M0 -60 C25 -45 35
+
+ -15 35 0 C35 15 25 45 0 60 C-25 45 -35 15 -35 0 C-35 -15 -25 -45 0 -60 Z" fill="url(#g5)" opacity="0.98"/>
+          <path d="M25 -50 C35 -40 40 -10 40 0 C40 10 35 40 25 50 C10 40 0 10 0 0 C0 -10 10 -40 25 -50 Z" fill="var(--lily3)" opacity="0.9" transform="rotate(60)"/>
+          <path d="M-25 -50 C-35 -40 -40 -10 -40 0 C-40 10 -35 40 -25 50 C-10 40 0 10 0 0 C0 -10 -10 -40 -25 -50 Z" fill="var(--lily3)" opacity="0.9" transform="rotate(-60)"/>
+          <path d="M0 -40 C15 -30 25 -5 25 0 C25 5 15 30 0 40 C-15 30 -25 5 -25 0 C-25 -5 -15 -30 0 -40 Z" fill="var(--lily2)" opacity="0.95"/>
+          <circle cx="0" cy="0" r="6" fill="var(--center)"/>
+        </g>
+      </svg>
+    </div>
+    <!-- Main message -->
+    <h1 id="msg" aria-live="polite"></h1>
+    <div class="subtitle">Un mensaje con todo mi corazón</div>
+    <div class="actions">
+      <button class="btn" id="replay">Volver a ver</button>
+      <button class="btn" id="download">Descargar HTML</button>
+    </div>
+  </div>
+  <script>
+    const text = 'P E R D Ó N A M E ,   M I C H E L L E   🌸';
+    const container = document.getElementById('msg');
+
+    // Create spans for each character
+    text.split('').forEach((ch, i) => {
+      const span = document.createElement('span');
+      span.className = 'letter';
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      span.style.animationDelay = (i * 0.07) + 's';
+      container.appendChild(span);
+    });
+
+    // Start animation
+    function start() {
+      document.querySelectorAll('.letter').forEach((el) => {
+        void el.offsetWidth; // Trigger reflow
+        el.classList.add('animate');
+      });
+      createPetals();
+      createLilies();
+    }
+
+    // Petal generation effect
+    function createPetals() {
+      const n = 40;
+      for (let i = 0; i < n; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        const size = 8 + Math.random() * 12;
+        p.style.width = size + 'px';
+        p.style.height = size * 1.8 + 'px';
+        p.style.left = (Math.random() * 100) + '%';
+        p.style.top = (Math.random() * 20 + 80) + '%';
+        p.style.background = `var(--petal${Math.floor(Math.random() * 3) + 1})`;
+        p.style.animationDelay = (i * 0.15) + 's';
+        document.querySelector('.card').appendChild(p);
+        setTimeout(() => p.remove(), 6000);
+      }
+    }
+
+    // Lily generation effect
+    function createLilies() {
+      const lilies = document.querySelectorAll('.lily');
+      lilies.forEach((lily, idx) => {
+        void lily.offsetWidth; // Trigger reflow
+        lily.style.animationDelay = (idx * 0.2) + 's';
+      });
+    }
+
+    // Replay animation
+    document.getElementById('replay').addEventListener('click', () => {
+      document.querySelectorAll('.letter').forEach(el => el.classList.remove('animate'));
+      document.querySelectorAll('.petal').forEach(p => p.remove());
+      document.querySelectorAll('.lily').forEach(l => l.style.opacity = 0);
+      setTimeout(start, 120);
+    });
+
+    // Download HTML
+    document.getElementById('download').addEventListener('click', () => {
+      const doctype = '<!doctype html>';
+      const html = document.documentElement.outerHTML;
+      const content = doctype + html;
+      const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'perdoname_michelle.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // Auto start on load
+    window.addEventListener('load', () => {
+      setTimeout(start, 200);
+    });
+  </script>
+</body>
+</html>
